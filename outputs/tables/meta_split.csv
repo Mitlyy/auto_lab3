@@ -1,0 +1,17 @@
+dataset_id,dataset_name,split
+224,breastTumor,meta_train
+504,analcatdatasupreme,meta_train
+188,eucalyptus,meta_train
+171,171,meta_train
+181,yeast,meta_train
+546,sensory,meta_train
+35,dermatology,meta_train
+519,vinnie,meta_train
+307,307,meta_train
+469,analcatdatadmft,meta_val
+174,174,meta_val
+18,18,meta_val
+209,quake,meta_test
+550,quake,meta_test
+478,478,meta_test
+471,471,meta_test

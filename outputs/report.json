@@ -1,0 +1,24 @@
+{
+  "n_datasets": 14,
+  "device": "cuda",
+  "target_num_classes": 6,
+  "target_num_features": 6,
+  "meta_features": [
+    "mf_log_rows_raw",
+    "mf_log_features_raw",
+    "mf_missing_ratio_raw",
+    "mf_numeric_ratio_raw",
+    "mf_log_classes_raw",
+    "mf_class_entropy_merged",
+    "mf_mean_abs_corr",
+    "mf_feature_std_mean",
+    "mf_feature_std_std",
+    "mf_pca_var_sum",
+    "mf_pca_var_first"
+  ],
+  "step4_random_mean_final": 0.3956264711291035,
+  "step6_g_supervised_mean_final": 0.4078596694554157,
+  "step8_g_dynamic_mean_final": 0.4272491565195033,
+  "zero_shot_supervised_g_mean": 0.3956264711291035,
+  "zero_shot_dynamic_g_mean": 0.43088851224550634
+}

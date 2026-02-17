@@ -1,4 +1,4 @@
-# Auto Lab 3: Hypernetwork for Fast Classification Initialization
+# Lab 3
 
 
 

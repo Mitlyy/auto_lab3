@@ -11,7 +11,7 @@ class ExperimentConfig:
     out_dir: Path = Path("auto_lab3/outputs")
 
     seed: int = 42
-    min_datasets: int = 12
+    min_datasets: int = 9
     max_datasets: int = 16
 
     min_rows_raw: int = 120

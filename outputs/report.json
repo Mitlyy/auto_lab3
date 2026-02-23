@@ -1,5 +1,5 @@
 {
-  "n_datasets": 14,
+  "n_datasets": 9,
   "device": "cuda",
   "target_num_classes": 6,
   "target_num_features": 6,
@@ -16,9 +16,9 @@
     "mf_pca_var_sum",
     "mf_pca_var_first"
   ],
-  "step4_random_mean_final": 0.3956264711291035,
-  "step6_g_supervised_mean_final": 0.4078596694554157,
-  "step8_g_dynamic_mean_final": 0.4272491565195033,
-  "zero_shot_supervised_g_mean": 0.3956264711291035,
-  "zero_shot_dynamic_g_mean": 0.43088851224550634
+  "step4_random_mean_final": 0.47140022837631634,
+  "step6_g_supervised_mean_final": 0.5151825497769339,
+  "step8_g_dynamic_mean_final": 0.5404602964546641,
+  "zero_shot_supervised_g_mean": 0.47140022837631634,
+  "zero_shot_dynamic_g_mean": 0.5190484105711142
 }

@@ -211,16 +211,14 @@ def build_task_from_raw(raw: RawDataset, config: ExperimentConfig) -> ProcessedT
     scaler = StandardScaler()
     X_scaled = scaler.fit_transform(X_balanced)
 
-    n_components = min(config.target_num_features, X_scaled.shape[1], X_scaled.shape[0] - 1)
-    if n_components < 1:
-        raise ValueError("invalid PCA components")
+    if X_scaled.shape[1] < config.target_num_features:
+        raise ValueError("too few encoded features for target projection")
+    if (X_scaled.shape[0] - 1) < config.target_num_features:
+        raise ValueError("too few rows for target projection")
 
+    n_components = config.target_num_features
     pca = PCA(n_components=n_components, random_state=config.seed)
     X_projected = pca.fit_transform(X_scaled).astype(np.float32)
-
-    if n_components < config.target_num_features:
-        pad = np.zeros((X_projected.shape[0], config.target_num_features - n_components), dtype=np.float32)
-        X_projected = np.hstack([X_projected, pad])
 
     X_train, X_test, y_train, y_test = train_test_split(
         X_projected,

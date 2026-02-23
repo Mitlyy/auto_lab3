@@ -63,6 +63,7 @@ dataset_id,file,reason
 206,206.arff,likely regression target
 207,207.arff,likely regression target
 208,208.arff,too few rows
+209,209.arff,too few encoded features for target projection
 210,210.arff,too few rows
 211,211.arff,too few rows
 212,212.arff,too few rows
@@ -154,6 +155,7 @@ dataset_id,file,reason
 467,467.arff,too few rows
 468,468.arff,too few rows
 470,470.arff,not enough classes
+471,471.arff,too few encoded features for target projection
 472,472.arff,too few rows
 474,474.arff,not enough classes
 475,475.arff,not enough classes
@@ -189,6 +191,7 @@ dataset_id,file,reason
 515,515.arff,too few rows
 516,516.arff,not enough classes
 518,518.arff,too few rows
+519,519.arff,too few encoded features for target projection
 520,520.arff,too few samples per class (15)
 521,521.arff,too few samples per class (8)
 522,522.arff,likely regression target
@@ -215,6 +218,7 @@ dataset_id,file,reason
 545,545.arff,no features
 547,547.arff,likely regression target
 549,549.arff,likely regression target
+550,550.arff,too few encoded features for target projection
 551,551.arff,too few rows
 552,552.arff,too few rows
 553,553.arff,too few rows
@@ -596,6 +600,7 @@ dataset_id,file,reason
 1027,1027.arff,too few samples per class (37)
 1028,1028.arff,not enough classes
 1029,1029.arff,"Error while parsing header, error was: 'utf-8' codec can't decode byte 0xd5 in position 852: invalid continuation byte"
+1030,1030.arff,too few encoded features for target projection
 1035,1035.arff,too few samples per class (37)
 1045,1045.arff,not enough classes
 1047,1047.arff,too few samples per class (6)

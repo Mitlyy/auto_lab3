@@ -91,6 +91,38 @@ def plot_average_learning_curves(curves: dict[str, np.ndarray], out_path: Path) 
 
 
 
+def plot_stage_curves_with_mean(
+    curves: list[list[float]],
+    out_path: Path,
+    title: str,
+    mean_label: str,
+    mean_color: str,
+) -> None:
+    matrix = np.asarray(curves, dtype=np.float32)
+    if matrix.ndim != 2 or matrix.shape[0] == 0:
+        raise ValueError("expected a non-empty list of equally sized curves")
+
+    epochs = np.arange(matrix.shape[1])
+    mean_curve = matrix.mean(axis=0)
+
+    fig, ax = plt.subplots(figsize=(8.8, 5.0), dpi=150)
+    for row in matrix:
+        ax.plot(epochs, row, color="#64748b", alpha=0.22, linewidth=1.1)
+
+    ax.plot(epochs, mean_curve, color=mean_color, linewidth=2.8, label=mean_label)
+    ax.set_title(title)
+    ax.set_xlabel("epoch")
+    ax.set_ylabel("balanced accuracy")
+    ax.set_ylim(0.0, 1.0)
+    ax.grid(alpha=0.25)
+    ax.legend(frameon=False)
+
+    fig.tight_layout()
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    fig.savefig(out_path, bbox_inches="tight")
+    plt.close(fig)
+
+
 def plot_dynamic_curve(history: pd.DataFrame, out_path: Path, window: int = 50) -> None:
     value_column = "eval_balanced_accuracy" if "eval_balanced_accuracy" in history.columns else "balanced_accuracy"
     values = history[value_column].to_numpy(dtype=float)

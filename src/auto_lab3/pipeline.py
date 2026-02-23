@@ -25,6 +25,7 @@ from .visualization import (
     plot_dynamic_curve,
     plot_final_comparison,
     plot_preprocessing_hist,
+    plot_stage_curves_with_mean,
 )
 
 
@@ -234,7 +235,7 @@ auto_lab3/
 | 6 | Повтор шага 4 с инициализацией `f` от `g` | `{artifacts_prefix}/models/f_g_supervised_init`, `{artifacts_prefix}/curves/step6_g_supervised_init_avg.csv` |
 | 7 | Динамическое дообучение `g` через градиент риска через `f` и `g` | `{artifacts_prefix}/models/hypernets/g_dynamic.pt`, `{artifacts_prefix}/tables/g_dynamic_history.csv`, `{artifacts_prefix}/plots/dynamic_curve.png` |
 | 8 | Повтор шага 6 с динамически обученной `g` | `{artifacts_prefix}/models/f_g_dynamic_init`, `{artifacts_prefix}/curves/step8_g_dynamic_init_avg.csv` |
-| 9 | Сравнение средних кривых обучения | `{artifacts_prefix}/plots/learning_curves_compare.png`, `{artifacts_prefix}/tables/stage_summary.csv` |
+| 9 | Сравнение средних кривых обучения и кривых по каждому датасету | `{artifacts_prefix}/plots/learning_curves_compare.png`, `{artifacts_prefix}/plots/step4_curves_with_mean.png`, `{artifacts_prefix}/plots/step6_curves_with_mean.png`, `{artifacts_prefix}/plots/step8_curves_with_mean.png`, `{artifacts_prefix}/tables/stage_summary.csv` |
 
 ## Основные результаты
 | Этап | Mean final balanced_accuracy | Std |
@@ -252,6 +253,15 @@ auto_lab3/
 
 ### Шаг 9: сравнение кривых обучения
 ![Curve compare]({artifacts_prefix}/plots/learning_curves_compare.png)
+
+### Шаг 9: Step 4 (все датасеты + средняя)
+![Step 4 curves]({artifacts_prefix}/plots/step4_curves_with_mean.png)
+
+### Шаг 9: Step 6 (все датасеты + средняя)
+![Step 6 curves]({artifacts_prefix}/plots/step6_curves_with_mean.png)
+
+### Шаг 9: Step 8 (все датасеты + средняя)
+![Step 8 curves]({artifacts_prefix}/plots/step8_curves_with_mean.png)
 
 ### Сравнение финального качества
 ![Final compare]({artifacts_prefix}/plots/final_comparison.png)
@@ -396,6 +406,28 @@ def run_experiment(config: ExperimentConfig) -> dict[str, Path | str | int | flo
     step8_frame = _results_to_frame("step8_g_dynamic_init", step8_results)
     step8_frame.to_csv(paths["tables"] / "step8_g_dynamic_init_results.csv", index=False)
     _save_curve(step8_curve, paths["curves"] / "step8_g_dynamic_init_avg.csv")
+
+    plot_stage_curves_with_mean(
+        curves=[item.curve for item in step4_results],
+        out_path=paths["plots"] / "step4_curves_with_mean.png",
+        title="Step 9: step4 random init curves by dataset",
+        mean_label="mean (step4_random)",
+        mean_color="#2563eb",
+    )
+    plot_stage_curves_with_mean(
+        curves=[item.curve for item in step6_results],
+        out_path=paths["plots"] / "step6_curves_with_mean.png",
+        title="Step 9: step6 supervised g init curves by dataset",
+        mean_label="mean (step6_g_supervised_init)",
+        mean_color="#16a34a",
+    )
+    plot_stage_curves_with_mean(
+        curves=[item.curve for item in step8_results],
+        out_path=paths["plots"] / "step8_curves_with_mean.png",
+        title="Step 9: step8 dynamic g init curves by dataset",
+        mean_label="mean (step8_g_dynamic_init)",
+        mean_color="#dc2626",
+    )
 
     all_stage_results = pd.concat([step4_frame, step6_frame, step8_frame], axis=0, ignore_index=True)
     all_stage_results.to_csv(paths["tables"] / "all_stage_results.csv", index=False)
